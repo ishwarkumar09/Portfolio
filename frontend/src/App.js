@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-     <h1>Mern Portfolio</h1>
+     <h1 className='text-3xl font-bold underline'>Mern Portfolio</h1>
     </div>
   );
 }
