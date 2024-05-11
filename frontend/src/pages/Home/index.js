@@ -7,6 +7,7 @@ import Projects from "./Projects.js";
 import Courses from "./Courses.js";
 import Contact from "./Contact.js";
 import Footer from "./Footer.js";
+import LeftSider from "./LeftSider.js";
 
 function Home() {
     return(<div >
