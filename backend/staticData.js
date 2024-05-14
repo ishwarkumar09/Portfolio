@@ -1,4 +1,3 @@
-import { title } from "process";
 
 const intros = [
   {
@@ -11,7 +10,7 @@ const intros = [
   },
 ];
 
-const about = [
+const abouts = [
   {
     lottieURL:
       "https://lottie.host/80767a04-a8f0-4006-9c1f-4151297db4b4/kv0kQT809n.json",
@@ -25,25 +24,25 @@ const about = [
 
 const projects = [
     {
-        technologies: [],
-        title: "SHEYPIZZA",
-        image: "https://sheysathya2.netlify.app/pizzas.svg",
-        description:"An ecommerce application developed using react , node , redux and mongodb",
-        link: "/"
+      title: "SHEYPIZZA",
+      image: "https://sheysathya2.netlify.app/pizzas.svg",
+      description:"An ecommerce application developed using react , node , redux and mongodb",
+      link: "/",
+      technologies: []
     },
     {
-        technologies: [],
-        title : "SHEYSHOP",
-        image: "https://sheysathya2.netlify.app/ecommerce.svg",
-        description:"An ecommerce application developed using react , node , redux and mongodb",
-        link: "/"
+      title : "SHEYSHOP",
+      image: "https://sheysathya2.netlify.app/ecommerce.svg",
+      description:"An ecommerce application developed using react , node , redux and mongodb",
+      link: "/",
+      technologies: []
     },
     {
-        technologies: [],
-        title : "SHEYROOMS",
-        image: "https://sheysathya2.netlify.app/hotels.svg",
-        description:"An ecommerce application developed using react , node , redux and mongodb",
-        link: "/"
+      title : "SHEYROOMS",
+      image: "https://sheysathya2.netlify.app/hotels.svg",
+      description:"An ecommerce application developed using react , node , redux and mongodb",
+      link: "/",
+      technologies: []
     }
 ];
 

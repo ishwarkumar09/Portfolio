@@ -56,7 +56,7 @@ const experienceSchema = new mongoose.Schema({
     required: true,
   },
 });
-const projectsSchema = new mongoose.Schema({
+const projectSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -111,7 +111,7 @@ const About = mongoose.model("About", aboutSchema);
 
 const Experience = new mongoose.model("Experience", experienceSchema);
 
-const Projects = mongoose.model("Projects ", projectsSchema);
+const Project = mongoose.model("Project ", projectSchema);
 const Contact = mongoose.model("Contact",contactSchema)
 
 // const coursesSchema = new mongoose.Schema(
@@ -138,4 +138,4 @@ const Contact = mongoose.model("Contact",contactSchema)
 // const Courses = new mongoose.model("Courses" , coursesSchema)
 
 
-export { Intro, About, Experience, Projects ,Contact};
+export { Intro, About, Experience, Project ,Contact};
