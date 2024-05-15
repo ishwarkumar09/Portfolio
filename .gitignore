@@ -1,6 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 
+# dotenv environment variables file
+.env
+.env.test
+.env.production
 
 # dependencies
 /node_modules
@@ -24,7 +28,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# dotenv environment variables file
-.env
-.env.test
-.env.production
+

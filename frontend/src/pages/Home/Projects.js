@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import SectionTitle from "../../components/SectionTitle";
-import { experiences } from "../../resources/experiences";
+import { useSelector } from "react-redux";
 
 
 function Projects() {
+  const {loading ,portfolioData} = useSelector((state) => state.root)
+
+  const {projects} = portfolioData ;
     const [selectedItemIndex, setSelectedItemIndex] = useState(0);
   return (
     <div>
@@ -11,7 +14,7 @@ function Projects() {
 
     <div className="flex  py-10 sm:flex-col sm:gap-5">
       <div className="flex flex-col gap-10 border-l-4 border-[#135e4c82] w-1/3 sm:flex-row  sm:overflow-x-scroll sm:w-full">
-        {experiences.map((experience, index) => (
+        {projects.map((project, index) => (
           <div
             onClick={() => {
               setSelectedItemIndex(index);
@@ -26,20 +29,24 @@ function Projects() {
                   : "text-white"
               }`}
             >
-              {experience.period}
+              {project.title}
             </h1>
+
           </div>
         ))}
       </div>
      <div className="flex items-center px-10 justify-center gap-10 sm:flex-col" >
-        <img src="https://static.vecteezy.com/system/resources/previews/011/153/360/original/3d-web-developer-working-on-project-illustration-png.png" alt="" className="h-60 w-72"/>
+        <img src={projects[selectedItemIndex].image} alt="" className="h-60 w-72"/>
      <div className="flex flex-col gap-10 sm:text-center ">
           <h1 className="text-secondary text-xl">
-               {experiences[selectedItemIndex].title}
+               {projects[selectedItemIndex].title}
           </h1>
-         {/* <p className="text-white">{project[selectedItemIndex].description}</p> */}
+         <p className="text-white">{projects[selectedItemIndex].description}</p>
           <p className="text-white">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+         {projects[selectedItemIndex].technologies} 
+          </p>
+          <p className="text-white">
+         {projects[selectedItemIndex].link} 
           </p>
       </div>
      </div>
