@@ -10,6 +10,10 @@
   font-family: "Montserrat",sans-serif;
 }
  
+.header h1{
+  margin: 0 !important;
+  padding: 0 !important;
+}
 
 
 ::-webkit-scrollbar{
@@ -86,5 +90,35 @@ i:hover{
     opacity: 1;
   }
 }
+
+/* input */
+
+input{
+  height: 40px;
+  border: 1px solid gray;
+  width: 100%;
+  padding-left: 20px;
+  border-radius: 5px;
+}
+
+input:focus{
+  outline: none;
+  border: 2px solid rgb(111, 110, 110);
+}
+textarea{
+  height: 40px;
+  border: 1px solid gray;
+  width: 100%;
+  padding-left: 20px;
+  border-radius: 5px;
+  height: 100px;
+  padding-top: 10px;
+}
+
+textarea:focus{
+  outline: none;
+  border: 2px solid rgb(111, 110, 110);
+}
+
 
 

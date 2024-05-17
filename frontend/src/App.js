@@ -1,12 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Loader from "./components/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { HideLoading, SetPortfolioData, ShowLoading } from "./redux/rootSlice";
+import { HideLoading, SetPortfolioData, ShowLoading ,ReloadData} from "./redux/rootSlice";
+import Admin from "./pages/Admin/index.js";
 
 function App() {
-  const {loading ,portfolioData} = useSelector((state)=>state.root);
+  const {loading ,portfolioData,reloadData} = useSelector((state)=>state.root);
   const dispatch = useDispatch();
   const getPortfolioData = async () => {
     try {
@@ -14,13 +15,14 @@ function App() {
     const res = await fetch('/api/portfolio/get-portfolio-data');
     const data = await res.json();
     dispatch(SetPortfolioData(data));
+    dispatch(ReloadData(false))
     dispatch(HideLoading());
 
-    if(data.error){
-      throw new Error("Erorr", data.error)
-  }
+    if (data.error) {
+      throw new Error(data.error); // Corrected the error syntax
+    }
     } catch (error) {
-      console.log("Error in api call :" ,error)
+      console.log("Error in API call:", error);
     }
   };
 
@@ -30,6 +32,11 @@ function App() {
     }
   }, [portfolioData]);
 
+   useEffect(()=>{
+    if(reloadData){
+      getPortfolioData()
+    }
+   },[reloadData])
 
 
   return (
@@ -37,6 +44,7 @@ function App() {
       {loading ? <Loader /> : null}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );
