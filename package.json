@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "21.6.2",
-    "npm":"10.2.4"
-  },
   "type": "module",
   "scripts": {
     "start": "node backend/server.js",
