@@ -3,9 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "21.6.2",
+    "npm":"10.2.4"
+  },
   "type": "module",
   "scripts": {
-    "server": "nodemon backend/server.js"
+    "client-install": "npm install --prefix client",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently\"npm run server\"\"npm run frontend\"",
+    "start": "node backend/server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "",
   "license": "ISC",

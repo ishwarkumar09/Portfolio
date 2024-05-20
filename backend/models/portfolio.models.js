@@ -66,15 +66,15 @@ const projectSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
+  
   },
-  Image: {
+  image: {
     type: String,
     require: true,
   },
   link: {
     type: String,
-    required: true,
+    required:true
   },
   technologies: {
     type: Array,
@@ -104,7 +104,7 @@ const contactSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    required: true,
+
   },
 });
 

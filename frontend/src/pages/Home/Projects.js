@@ -41,13 +41,17 @@ function Projects() {
           <h1 className="text-secondary text-xl">
                {projects[selectedItemIndex].title}
           </h1>
-         <p className="text-white">{projects[selectedItemIndex].description}</p>
-          <p className="text-white">
-         {projects[selectedItemIndex].technologies} 
-          </p>
-          <p className="text-white">
-         {projects[selectedItemIndex].link} 
-          </p>
+         <a className="text-white" href={projects[selectedItemIndex].link} >
+         {projects[selectedItemIndex].link}
+          </a>
+          <p className="text-white">{projects[selectedItemIndex].description}</p>
+         <div className="flex flex-wrap gap-10 mt-5">
+          {projects[selectedItemIndex].technologies.map((technology, idx) => (
+            <div className="border border-tertiary py-3 px-10" key={idx}>
+              <h1 className="text-tertiary">{technology}</h1>
+            </div>))}
+            </div>
+          
       </div>
      </div>
     </div>

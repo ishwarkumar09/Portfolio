@@ -7,10 +7,10 @@ import {
   ShowLoading,
 } from "../../redux/rootSlice";
 
-function Experience() {
+function Project() {
   const dispatch = useDispatch();
   const { portfolioData } = useSelector((state) => state.root);
-  const { experiences } = portfolioData;
+  const { projects } = portfolioData;
   const [showModal, setShowModal] = useState(false);
   const [selectedItemForEdit, setSelectedItemForEdit] = useState(null);
   const [form] = Form.useForm();
@@ -20,8 +20,11 @@ function Experience() {
       dispatch(ShowLoading());
       let res;
       const endpoint = selectedItemForEdit
-        ? "/api/portfolio/update-experience"
-        : "/api/portfolio/add-experience";
+        ? "/api/portfolio/update-project"
+        : "/api/portfolio/add-project";
+
+      values.technologies = values.technologies.split(',').map(tech => tech.trim());
+
 
       res = await fetch(endpoint, {
         method: "POST",
@@ -48,7 +51,7 @@ function Experience() {
   const handleDelete = async (id) => {
     try {
       dispatch(ShowLoading());
-      const res = await fetch("/api/portfolio/delete-experience", {
+      const res = await fetch("/api/portfolio/delete-project", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ _id: id }),
@@ -71,7 +74,11 @@ function Experience() {
 
   useEffect(() => {
     if (selectedItemForEdit) {
-      form.setFieldsValue(selectedItemForEdit);
+      // Join technologies array into a comma-separated string
+      form.setFieldsValue({
+        ...selectedItemForEdit,
+        technologies: selectedItemForEdit.technologies.join(', ')
+      });
     } else {
       form.resetFields();
     }
@@ -89,8 +96,8 @@ function Experience() {
     setShowModal(true);
   };
 
-  const handleEditExperience = (experience) => {
-    setSelectedItemForEdit(experience);
+  const handleEditExperience = (project) => {
+    setSelectedItemForEdit(project);
     setShowModal(true);
   };
 
@@ -101,37 +108,40 @@ function Experience() {
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 m-5 rounded"
           onClick={handleAddExperience}
         >
-          Add Experience
+          Add Project
         </button>
       </div>
-      <div className="grid grid-cols-4 sm:grid-cols-3 gap-5">
-        {experiences.map((experience, idx) => (
+      <div className="grid grid-cols-4 gap-5 sm:grid-cols-2">
+        {projects.map((project, idx) => (
           <div
             key={idx}
-            className="shadow border p-5 border-gray-400 rounded flex flex-col gap-5 relative"
-          >
+            className="shadow border p-5 sm:px-4 sm:py-2 border-gray-400 rounded flex flex-col gap-5 "
+          ><img src={project.image} alt="" className="h-60 w-72"/>
             <h1 className="text-primary text-xl font-bold">
-              {experience.period}
+              {project.title}
             </h1>
+            <div>
+                <b>Link:</b>
+            <a href={project.link} className ="text-primary hover:text-secondary"alt ="/">
+              {project.link} 
+            </a>
+            </div>
             <h1>
-              <b>Company:</b> {experience.company}
-            </h1>
-            <h1>
-              <b>Role:</b> {experience.title}
+              <b>Technologies:</b> {project.technologies.join(" , ")}
             </h1>
             <p>
-              <b>Description:</b> {experience.description}
+              <b>Description:</b> {project.description}
             </p>
             <div  className="mt-auto flex justify-end gap-5 sm:gap-2 sm:justify-center">
               <button
                 className="bg-primary text-white px-5 py-2 rounded-md"
-                onClick={() => handleEditExperience(experience)}
+                onClick={() => handleEditExperience(project)}
               >
                 Edit
               </button>
               <button
-                className="bg-red-500 text-white px-5 py-2 rounded-md "
-                onClick={() => handleDelete(experience._id)}
+                className="bg-red-500 text-white px-5 py-2 rounded-md"
+                onClick={() => handleDelete(project._id)}
               >
                 Delete
               </button>
@@ -142,19 +152,22 @@ function Experience() {
 
       <Modal
         open={showModal}
-        title={selectedItemForEdit ? "Edit Experience" : "Add Experience"}
+        title={selectedItemForEdit ? "Edit Project" : "Add Project"}
         footer={null}
         onCancel={handleCancel}
       >
         <Form layout="vertical" form={form} onFinish={onFinish}>
-          <Form.Item name="period" label="Period">
-            <Input placeholder="Period" />
-          </Form.Item>
-          <Form.Item name="company" label="Company">
-            <Input placeholder="Company" />
-          </Form.Item>
           <Form.Item name="title" label="Title">
             <Input placeholder="Title" />
+          </Form.Item>
+          <Form.Item name="link" label="Link">
+            <Input placeholder="Link" />
+          </Form.Item>
+          <Form.Item name="image" label="Image URL">
+            <Input placeholder="ImageURL" />
+          </Form.Item>
+          <Form.Item name="technologies" label="Technologies">
+            <Input placeholder="Technologies" />
           </Form.Item>
           <Form.Item name="description" label="Description">
             <Input.TextArea placeholder="Description" />
@@ -177,4 +190,4 @@ function Experience() {
   );
 }
 
-export default Experience;
+export default Project;

@@ -156,4 +156,107 @@ router.post("/delete-experience", async (req, res) => {
   }
 });
 
+
+
+// Add project
+
+router.post("/add-project", async (req, res) => {
+  try {
+    const project = new Project(req.body);
+    await project.save();
+
+    if (!project) {
+      return res
+        .status(404)
+        .json({ success: false, message: "new Project not found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: project,
+      message: "new Project Added",
+    });
+  } catch (error) {
+    console.error("Error in Adding Project:", error);
+    res.status(500).json({ success: false, error: "Internal server error" });
+  }
+});
+// Update experience
+
+router.post("/update-project", async (req, res) => {
+  try {
+    const project = await Project.findOneAndUpdate(
+      { _id: req.body._id },
+      req.body,
+      { new: true }
+    );
+    if (!project) {
+      return res
+        .status(404)
+        .json({ success: false, message: "project not found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: project,
+      message: "Project Updated Successfully",
+    });
+  } catch (error) {
+    console.error("Error in Updating Project:", error);
+    res.status(500).json({ success: false, error: "Internal server error" });
+  }
+});
+
+router.post("/delete-project", async (req, res) => {
+  try {
+    const project = await Project.findOneAndDelete({ _id: req.body._id });
+
+    if (!project) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Project not found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Project Deleted Successfully",
+    });
+  } catch (error) {
+    console.error("Error in Deleting Project:", error);
+    res.status(500).json({ success: false, error: "Internal server error" });
+  }
+});
+
+// Update contact
+
+router.post("/update-contact", async (req, res) => {
+  try {
+    const contact = await Contact.findOneAndUpdate(
+      { _id: req.body._id },
+      req.body,
+      { new: true }
+    ).select("-_id");
+    
+    if (!contact) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Contact not found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: contact,
+      message: "Contact updated successfully",
+    });
+  } catch (error) {
+    console.error("Error in updating contact:", error);
+    res.status(500).json({ success: false, error: "Internal server error" });
+  }
+});
+
+
+
+
+
+
 export default router;
