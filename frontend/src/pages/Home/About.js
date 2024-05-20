@@ -6,7 +6,7 @@ function About() {
   const {loading , portfolioData} =useSelector((state) =>state.root)
   
   const {about} = portfolioData;
-  const{lottieURL1, skills , description1 ,description2 } = about ;
+  const{lottieURL, skills , description1 ,description2 } = about ;
  
   return (
     <div>
@@ -14,7 +14,7 @@ function About() {
       <div className="flex items-center sm:flex-col">
         <div className="h-[70vh] w-1/2 sm:w-full">
           <dotlottie-player
-            src={lottieURL1}
+            src={lottieURL}
             background="transparent"
             speed="1"
             autoplay
