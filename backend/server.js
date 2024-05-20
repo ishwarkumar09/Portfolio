@@ -8,17 +8,19 @@ import adminRoutes from "./routes/Admin.routes.js"
 dotenv.config();
 const PORT = process.env.PORT || 5000;
 const app = express();
+const __dirname = path.resolve();
 
 app.use(express.json());
 app.use("/api/portfolio", dataRoutes)
 app.use("/api/portfolio/admin", adminRoutes)
 
-if(process.env.Node_ENV = "development"){
-    app.use(express.static(path.join(__dirname ,"/frontend/dist")))
-    app.get("*",(req,res) =>{
-        res.sendFile(path.join(__dirname,"frontend/dist/index.html"))
-    })
-}
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, 'frontend', 'build')));
+  
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    });
+  }
 
 connectDB()
 .then(()=>{
