@@ -37,7 +37,7 @@ function Projects() {
       </div>
      <div className="flex items-center px-10 justify-center gap-10 sm:flex-col" >
         <img src={projects[selectedItemIndex].image} alt="" className="h-60 w-72 rounded"/>
-     <div className="flex flex-col gap-10 sm:text-center ">
+     <div className="flex flex-col gap-10 ">
           <h1 className="text-secondary text-xl">
                {projects[selectedItemIndex].title}
           </h1>
