@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 
 function Home() {
     const {loading , portfolioData} =useSelector((state) => state.root);
-    return(<div >
+    return(<div  className="bg-primary">
          <Header />
         {portfolioData && ( <div className="bg-primary px-40  sm:px-5">
          <Intro />
