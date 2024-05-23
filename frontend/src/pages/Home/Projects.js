@@ -36,7 +36,7 @@ function Projects() {
         ))}
       </div>
      <div className="flex items-center px-10 justify-center gap-10 sm:flex-col" >
-        <img src={projects[selectedItemIndex].image} alt="" className="h-60 w-72"/>
+        <img src={projects[selectedItemIndex].image} alt="" className="h-60 w-72 rounded"/>
      <div className="flex flex-col gap-10 sm:text-center ">
           <h1 className="text-secondary text-xl">
                {projects[selectedItemIndex].title}
@@ -44,7 +44,9 @@ function Projects() {
          <a className="text-white" href={projects[selectedItemIndex].link} >
          {projects[selectedItemIndex].link}
           </a>
+          
           <p className="text-white">{projects[selectedItemIndex].description}</p>
+          
          <div className="flex flex-wrap gap-10 mt-5">
           {projects[selectedItemIndex].technologies.map((technology, idx) => (
             <div className="border border-tertiary py-3 px-10" key={idx}>
