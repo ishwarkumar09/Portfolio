@@ -11,7 +11,7 @@ function Intro() {
   return (
     
       
-      <div className="h-[80vh] bg-primary flex flex-col items-start sm:mx-5 justify-center gap-7 py-5">
+      <div className="h-[80vh]  flex flex-col items-start sm:mx-5 justify-center gap-7 py-5 sm:my-[90px]">
         <h1 className="text-white">{welcomeText || ""}</h1>
         <h1 className="text-7xl sm:text-3xl text-secondary font-semibold">
           {`${firstName} ${lastName}` || " "}
